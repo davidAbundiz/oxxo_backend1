@@ -51,6 +51,19 @@ public class Mensaje {
 		return repositorio.buscar(id);
 	}
 	
+	@PutMapping("/productos")
+	public void actualizar(@RequestBody Productos productos) {
+		repositorio.actualizar(productos);
+	}
+	
+	@DeleteMapping("/productos/{id}")
+	public void eliminar(@PathVariable int id) {
+		repositorio.eliminar(id);
+	}
+	
+	
+	
+	
 	@GetMapping("cajeros") 
 	public List<Cajeros> consultarCaj(){
 	return repo.consultar();

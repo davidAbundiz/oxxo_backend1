@@ -47,8 +47,9 @@ public class ProductosJDBC implements ProductosDAO{
 	@Override
 	public void actualizar(Productos productos) {
 		// TODO Auto-generated method stub
-		sql = "UPDATE productos SET descripcion = ?, precio = ?, codigo_barras = ?, existencia = ? WHERE id = ?";
-		oxxo_db.update(sql, 
+		 String sql = "UPDATE productos SET descripcion = ?, precio = ?, codigo_barras = ?, existencia = ? WHERE id = ?";
+		oxxo_db.update(sql,
+				productos.getId(),
 				productos.getDescripcion(),
 				productos.getPrecio(),
 				productos.getCodigo_barras(),

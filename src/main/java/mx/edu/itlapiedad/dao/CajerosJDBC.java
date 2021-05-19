@@ -41,8 +41,8 @@ public class CajerosJDBC implements CajerosDAO {
 	@Override
 	public void actualizar(Cajeros cajeros) {
 		// Actualizar Cajeros de Oxxo
-		sql = "UPDATE CAJEROS SET nombre = ?";
-		oxxo_db.update(sql, cajeros.getNombre());
+		String sql = "UPDATE CAJEROS SET nombre = ?";
+		oxxo_db.update(sql, cajeros.getId(),cajeros.getNombre());
 	}
 	
 }

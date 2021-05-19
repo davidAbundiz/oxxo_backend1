@@ -32,15 +32,21 @@ public class Ticket_RenglonesJDBC implements Ticket_RenglonesDAO{
 		return oxxo_db.queryForObject(sql, new Ticket_RenglonesRM(), id);
 	}
 	@Override
+	public void actualizar(Ticket_Renglones ticket_renglones) {
+		// Actualizar Ticket_Renglones de Oxxo
+		sql = "UPDATE ticket_renglones SET TICKET_id = ?,"
+				+" PRODUCTO_id = ?, cantida = ?, precio = ?, importe = ?"
+				+" WHERE id=?";
+		oxxo_db.update(sql, ticket_renglones.getTICKET_id(), 
+				ticket_renglones.getPRODUCTO_id(), 
+				ticket_renglones.getCantidad(), 
+				ticket_renglones.getPrecio(), 
+				ticket_renglones.getImporte());
+	}
+	@Override
 	public void eliminar(int id) {
 		// Eliminar Ticket_Renglones de Oxxo
 		sql = "DELETE FROM ticket_renglones WHERE id = ?";
 		oxxo_db.update(sql, id);
-	}
-	@Override
-	public void actualizar(Ticket_Renglones ticket_renglones) {
-		// Actualizar Ticket_Renglones de Oxxo
-		sql = "UPDATE ticket_renglones SET cantidad = ?, precio = ?, importe = ?";
-		oxxo_db.update(sql, ticket_renglones.getCantidad(), ticket_renglones.getPrecio(), ticket_renglones.getImporte());
 	}
 }

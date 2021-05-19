@@ -37,4 +37,23 @@ public class ProductosJDBC implements ProductosDAO{
 		return oxxo_db.queryForObject(sql, new ProductosRM(), id);
 	}
 
+	@Override
+	public void eliminar(int id) {
+		// TODO Auto-generated method stub
+			sql = "DELETE FROM productos WHERE id = ?";
+			oxxo_db.update(sql, id);
+	}
+
+	@Override
+	public void actualizar(Productos productos) {
+		// TODO Auto-generated method stub
+		 String sql = "UPDATE productos SET descripcion = ?, precio = ?, codigo_barras = ?, existencia = ? WHERE id = ?";
+		oxxo_db.update(sql,
+				productos.getId(),
+				productos.getDescripcion(),
+				productos.getPrecio(),
+				productos.getCodigo_barras(),
+				productos.getExistencia());
+	}
+
 }

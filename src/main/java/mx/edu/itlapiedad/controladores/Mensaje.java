@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import mx.edu.itlapiedad.dao.CajerosDAO;
 import mx.edu.itlapiedad.dao.ProductosDAO;
+import mx.edu.itlapiedad.dao.TicketDAO;
 import mx.edu.itlapiedad.dao.Ticket_RenglonesDAO;
 import mx.edu.itlapiedad.models.Cajeros;
 import mx.edu.itlapiedad.models.Productos;
 import mx.edu.itlapiedad.models.Ticket_Renglones;
+import mx.edu.itlapiedad.models.Tickets;
 
 @RestController
 @RequestMapping("/devops")
@@ -29,6 +31,8 @@ public class Mensaje {
 	CajerosDAO repo;
 	@Autowired
 	Ticket_RenglonesDAO repoTick;
+	@Autowired
+	TicketDAO RTicket; 
 
 	
 	@GetMapping("/hola")
@@ -113,4 +117,10 @@ public class Mensaje {
 	public void eliminarTick(@PathVariable int id) {
 		repoTick.eliminar(id);
 	}
+	@GetMapping("tickets")
+	public List<Tickets> consultar(){
+		return RTicket.consultar();
+	/*public List<Tickets> consultar(){
+	return RTicket.co*/
+}
 }

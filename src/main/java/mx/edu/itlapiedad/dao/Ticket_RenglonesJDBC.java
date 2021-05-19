@@ -40,7 +40,14 @@ public class Ticket_RenglonesJDBC implements Ticket_RenglonesDAO{
 	@Override
 	public void actualizar(Ticket_Renglones ticket_renglones) {
 		// Actualizar Ticket_Renglones de Oxxo
-		sql = "UPDATE ticket_renglones SET cantidad = ?, precio = ?, importe = ?";
-		oxxo_db.update(sql, ticket_renglones.getCantidad(), ticket_renglones.getPrecio(), ticket_renglones.getImporte());
+		String sql = "UPDATE ticket_renglones SET TICKET_id = ?, PRODUCTO_id = ?,"
+				+ " cantidad = ?, precio = ?, importe = ? WHERE id = ?";
+		oxxo_db.update(sql,
+				ticket_renglones.getId(), 
+				ticket_renglones.getCantidad(), 
+				ticket_renglones.getPrecio(),
+				ticket_renglones.getImporte(),
+				ticket_renglones.getTICKET_id(),
+				ticket_renglones.getPRODUCTO_id());
 	}
 }

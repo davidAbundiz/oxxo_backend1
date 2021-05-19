@@ -3,7 +3,6 @@ package mx.edu.itlapiedad.models;
 public class Cajeros {
 int id;
 String nombre;
-
 public Cajeros() {
 	super();
 }

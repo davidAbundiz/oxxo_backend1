@@ -14,37 +14,46 @@ public class TicketJDBC implements TicketDAO{
 	
 	String sql;
 	
-	
+	@Override
 	public List<Tickets> consultar() {
-		// TODO Auto-generated method stub
-	
-				sql = "SELECT * FROM tickets";
-				return oxxo_db.query(sql, new TicketRM());
+		// Consulta Tickets de Oxxo
+		sql = "SELECT * FROM tickets";
+		return oxxo_db.query(sql, new TicketRM());
 		
 	}
-
+	
 	@Override
 	public void insertar(Tickets tickets) {
-		// TODO Auto-generated method stub
-		
+		// Insertar Tickets
+		sql = "INSERT INTO tickets (fecha_hora, total, CAJERO_id)" 
+		+ "VALUES (?, ?, ?)";
+		oxxo_db.update(sql, tickets.getFecha_hora(), tickets.getTotal(), tickets.getCAJERO_id());
 	}
 
 	@Override
 	public Tickets buscar(int id) {
-		// TODO Auto-generated method stub
-		return null;
+//	 	Buscar Tickets de Oxxo
+			sql = "SELECT * FROM tickets WHERE id = ?";
+			return oxxo_db.queryForObject(sql, new TicketRM(), id);
 	}
 
 	@Override
 	public void eliminar(int id) {
-		// TODO Auto-generated method stub
+		// Eliminar Tickets
+		sql = "DELETE FROM tickets WHERE id = ?";
+		oxxo_db.update(sql, id);
 		
 	}
 
 	@Override
 	public void actualizar(Tickets tickets) {
 		// TODO Auto-generated method stub
-		
+		String sql_update = "UPDATE tickets SET fecha_hora = ?, total = ?, CAJERO_id = ?" + "WHERE id = ?";
+		oxxo_db.update(sql_update, 
+		        tickets.getFecha_hora(), 
+		        tickets.getTotal(), 
+		        tickets.getCAJERO_id(), 
+		        tickets.getId());
 	}
 
 }

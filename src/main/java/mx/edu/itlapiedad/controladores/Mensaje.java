@@ -117,10 +117,16 @@ public class Mensaje {
 	public void eliminarTick(@PathVariable int id) {
 		repoTick.eliminar(id);
 	}
-	@GetMapping("tickets")
-	public List<Tickets> consultar(){
-		return RTicket.consultar();
-	/*public List<Tickets> consultar(){
-	return RTicket.co*/
-}
+	
+	
+	@GetMapping("Tickets")
+	public List<Tickets> consultarT(){
+		 return RTicket.consultar();	
+	}
+	
+	@GetMapping("Tickets/{id}")
+	public Tickets buscarT(@PathVariable int id) {
+		return RTicket.buscar(id);
+	}
+	
 }

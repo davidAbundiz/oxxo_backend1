@@ -1,7 +1,5 @@
 package mx.edu.itlapiedad.models;
 
-import java.util.List;
-
 public class Tickets {
 int id;
 String fecha;
@@ -53,9 +51,5 @@ public void setCAJERO_id(int cAJERO_id) {
 	CAJERO_id = cAJERO_id;
 }
 
-public List<Tickets> consultarT() {
-	// TODO Auto-generated method stub
-	return null;
-}
 
 }

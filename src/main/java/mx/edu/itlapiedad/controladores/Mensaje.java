@@ -93,6 +93,9 @@ public class Mensaje {
 		repo.eliminar(id);
 	}
 	
+	
+	
+	
 	@GetMapping("Ticket_Renglones") 
 	public List<Ticket_Renglones> consultarTick(){
 	return repoTick.consultar();
@@ -118,7 +121,6 @@ public class Mensaje {
 		repoTick.eliminar(id);
 	}
 	
-	
 	@GetMapping("Tickets")
 	public List<Tickets> consultarT(){
 		 return RTicket.consultar();	
@@ -129,4 +131,28 @@ public class Mensaje {
 		return RTicket.buscar(id);
 	}
 	
+	
+	@GetMapping("Tickets") 
+	public List<Tickets> consultarTicket(){
+	return RTicket.consultar();
+	}
+	
+	@PostMapping("Tickets")
+	public void insertar(@RequestBody Tickets tickets) {
+		RTicket.insertar(tickets);
+	}
+	
+	@GetMapping("Tickets/{id}")
+	public Tickets buscarTicket(@PathVariable int id) {
+		return RTicket.buscar(id);
+	}
+	
+	@PutMapping("Tickets")
+	public void actualizarTicket(@RequestBody Tickets tickets) {
+		RTicket.actualizar(tickets);
+	}
+	@DeleteMapping("Tickets/{id}")
+	public void eliminarTicket(@PathVariable int id) {
+		RTicket.eliminar(id);
+	}
 }

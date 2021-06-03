@@ -49,11 +49,11 @@ public class ProductosJDBC implements ProductosDAO{
 		// TODO Auto-generated method stub
 		 String sql = "UPDATE productos SET descripcion = ?, precio = ?, codigo_barras = ?, existencia = ? WHERE id = ?";
 		oxxo_db.update(sql,
-				productos.getId(),
 				productos.getDescripcion(),
 				productos.getPrecio(),
 				productos.getCodigo_barras(),
-				productos.getExistencia());
+				productos.getExistencia(),
+				productos.getId());
 	}
 
 }

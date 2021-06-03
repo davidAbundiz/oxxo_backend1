@@ -12,9 +12,9 @@ public class TicketRM implements RowMapper<Tickets> {
 		// TODO Auto-generated method stub
 		Tickets tickets = new Tickets();
 		tickets.setId(rs.getInt("id"));
-		tickets.setFecha(rs.getString("fecha"));
+		tickets.setFecha_hora(rs.getString("fecha_hora"));
 		tickets.setTotal(rs.getFloat("total"));
-		tickets.setCAJERO_id(rs.getInt("cajeros_id"));
+		tickets.setCAJERO_id(rs.getInt("CAJERO_id"));
 
 		return tickets;
 		

@@ -22,8 +22,8 @@ public class Ticket_RenglonesJDBC implements Ticket_RenglonesDAO{
 	@Override
 	public void insertar(Ticket_Renglones ticket_renglones) {
 		// Insertar Ticket_Renglones de Oxxo
-		sql = "INSERT INTO ticket_renglones (cantidad, precio,importe) VALUES (?, ?, ?)";
-		oxxo_db.update(sql, ticket_renglones.getCantidad(), ticket_renglones.getPrecio());
+		sql = "INSERT INTO ticket_renglones (TICKET_id, PRODUCTO_id, cantidad, precio) "
+				+ "VALUES (?, ?, ?, ?)";
 	}
 	@Override
 	public Ticket_Renglones buscar(int id) {

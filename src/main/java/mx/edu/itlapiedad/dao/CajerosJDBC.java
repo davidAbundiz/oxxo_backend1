@@ -34,14 +34,33 @@ public class CajerosJDBC implements CajerosDAO {
 	}
 	@Override
 	public void actualizar(Cajeros cajeros) {
-		String sql_update= "UPDATE cajeros SET nombre = ? WHERE id = ?";
-		oxxo_db.update(sql_update, cajeros.getNombre());
+		String sql_update = "UPDATE cajeros SET nombre = ? WHERE id = ?";
+		oxxo_db.update(sql_update, 
+		        cajeros.getNombre(),
+		        cajeros.getId());
+		        
+			}
+	
+	
+	@Override
+	public void eliminar(int id) {
+		// Eliminar Cajeros
+					sql = "DELETE FROM cajeros WHERE id = ?";
+					oxxo_db.update(sql, id);
+	}
+	
+	/*@Override
+	public void actualizar(Cajeros cajeros) {
+		sql = "UPDATE cajeros SET nombre = ? WHERE id = ?";
+		oxxo_db.update(sql, 
+		        cajeros.getNombre(),
+		        cajeros.getId());
 	}
 	@Override
 	public void eliminar(int id) {
 		// Eliminar Cajeros de Oxxo
 		sql = "DELETE FROM cajeros WHERE id = ?";
 		oxxo_db.update(sql, id);
-	}
+	}*/
 	
 }

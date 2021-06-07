@@ -126,17 +126,6 @@ public class Mensaje {
 		 return RTicket.consultar();	
 	}
 	
-	@GetMapping("Tickets/{id}")
-	public Tickets buscarT(@PathVariable int id) {
-		return RTicket.buscar(id);
-	}
-	
-	
-	@GetMapping("Tickets") 
-	public List<Tickets> consultarTicket(){
-	return RTicket.consultar();
-	}
-	
 	@PostMapping("Tickets")
 	public void insertar(@RequestBody Tickets tickets) {
 		RTicket.insertar(tickets);

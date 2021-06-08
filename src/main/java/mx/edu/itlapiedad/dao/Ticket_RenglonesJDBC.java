@@ -1,11 +1,15 @@
 package mx.edu.itlapiedad.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import mx.edu.itlapiedad.models.Ticket_Renglones;
+import mx.edu.itlapiedad.models.Ticket_renglones_importe;
 
 @Repository
 public class Ticket_RenglonesJDBC implements Ticket_RenglonesDAO{
@@ -49,6 +53,26 @@ public class Ticket_RenglonesJDBC implements Ticket_RenglonesDAO{
 		// Eliminar Ticket_Renglones de Oxxo
 		sql = "DELETE FROM ticket_renglones WHERE id = ?";
 		oxxo_db.update(sql, id);
+	}	
+	
+	
+	@Override
+	public List<Ticket_renglones_importe> buscar_importe_cajero(int id) {
+		
+		String sql_query = "SELECT  importe FROM ticket_renglones  JOIN tickets ON ticket_renglones.TICKET_id = tickets.id JOIN cajeros  ON cajeros.id=tickets.CAJERO_id  WHERE  cajeros.id=?;";
+		return oxxo_db.query(sql_query, new RowMapper<Ticket_renglones_importe>() {
+			public Ticket_renglones_importe mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Ticket_renglones_importe ticket_renglones = new Ticket_renglones_importe();
+				ticket_renglones.setImporte(rs.getFloat("importe"));
+
+				return ticket_renglones;
+
+			
+			}
+
+		}, id);
 	}
+	
+	
 
 }

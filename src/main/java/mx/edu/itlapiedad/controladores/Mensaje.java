@@ -3,6 +3,9 @@ package mx.edu.itlapiedad.controladores;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +22,7 @@ import mx.edu.itlapiedad.dao.Ticket_RenglonesDAO;
 import mx.edu.itlapiedad.models.Cajeros;
 import mx.edu.itlapiedad.models.Productos;
 import mx.edu.itlapiedad.models.Ticket_Renglones;
+import mx.edu.itlapiedad.models.Ticket_renglones_importe;
 import mx.edu.itlapiedad.models.Tickets;
 
 @RestController
@@ -143,5 +147,17 @@ public class Mensaje {
 	@DeleteMapping("Tickets/{id}")
 	public void eliminarTicket(@PathVariable int id) {
 		RTicket.eliminar(id);
+	}
+	// SERVICIO WEB MOSTRAR TODOS LOS IMPORTES DE UN CAJERO EN ESPECIFICO
+	@GetMapping("/importe_cajero/{id}")
+	public ResponseEntity<?> buscar_importe_cajero(@PathVariable int id) {
+		List<Ticket_renglones_importe> resultado;
+		try {
+			resultado = repoTick.buscar_importe_cajero(id);
+		} catch (DataAccessException e) {
+			System.out.println(e);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Ticket_renglones_importe>>(resultado, HttpStatus.OK);
 	}
 }

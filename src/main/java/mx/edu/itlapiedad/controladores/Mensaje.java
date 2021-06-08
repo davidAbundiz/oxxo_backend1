@@ -148,7 +148,7 @@ public class Mensaje {
 	public void eliminarTicket(@PathVariable int id) {
 		RTicket.eliminar(id);
 	}
-	// SERVICIO WEB MOSTRAR TODOS LOS IMPORTES DE UN CAJERO EN ESPECIFICO
+	// SERVICIO WEB SUMAR TODOS LOS IMPORTES DE UN CAJERO EN ESPECIFICO
 	@GetMapping("/importe_cajero/{id}")
 	public ResponseEntity<?> buscar_importe_cajero(@PathVariable int id) {
 		List<Ticket_renglones_importe> resultado;

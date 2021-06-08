@@ -59,7 +59,7 @@ public class Ticket_RenglonesJDBC implements Ticket_RenglonesDAO{
 	@Override
 	public List<Ticket_renglones_importe> buscar_importe_cajero(int id) {
 		
-		String sql_query = "SELECT  importe FROM ticket_renglones  JOIN tickets ON ticket_renglones.TICKET_id = tickets.id JOIN cajeros  ON cajeros.id=tickets.CAJERO_id  WHERE  cajeros.id=?;";
+		String sql_query = "SELECT  sum(importe) as importe FROM ticket_renglones  JOIN tickets ON ticket_renglones.TICKET_id = tickets.id JOIN cajeros  ON cajeros.id=tickets.CAJERO_id  WHERE  cajeros.id=?;";
 		return oxxo_db.query(sql_query, new RowMapper<Ticket_renglones_importe>() {
 			public Ticket_renglones_importe mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Ticket_renglones_importe ticket_renglones = new Ticket_renglones_importe();

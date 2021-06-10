@@ -2,7 +2,6 @@ package mx.edu.itlapiedad.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,11 +59,15 @@ public class Ticket_RenglonesJDBC implements Ticket_RenglonesDAO{
 	@Override
 	public List<Ticket_renglones_importe> buscar_importe_cajero(int id) {
 		
-		String sql_query = "SELECT  sum(importe) as importe FROM ticket_renglones  JOIN tickets ON ticket_renglones.TICKET_id = tickets.id JOIN cajeros  ON cajeros.id=tickets.CAJERO_id  WHERE  cajeros.id=?;";
+		String sql_query = "SELECT  sum(importe) as importe,cajeros.id,tickets.fecha_hora FROM ticket_renglones "
+				+ " JOIN tickets ON ticket_renglones.TICKET_id = tickets.id JOIN cajeros "
+				+ " ON cajeros.id=tickets.CAJERO_id  WHERE  cajeros.id=?;";
 		return oxxo_db.query(sql_query, new RowMapper<Ticket_renglones_importe>() {
 			public Ticket_renglones_importe mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Ticket_renglones_importe ticket_renglones = new Ticket_renglones_importe();
 				ticket_renglones.setImporte(rs.getFloat("importe"));
+				ticket_renglones.setId(rs.getInt("id"));
+				ticket_renglones.setFecha_hora(rs.getString("fecha_hora"));
 
 				return ticket_renglones;
 
@@ -76,14 +79,18 @@ public class Ticket_RenglonesJDBC implements Ticket_RenglonesDAO{
 	
 	
 	@Override
-	public List<Ticket_renglones_importe> buscar_importe_cajero_fecha(int id,Timestamp fecha_hora) {
+	public List<Ticket_renglones_importe> buscar_importe_cajero_fecha(int id,String fecha_hora) {
 		
-		String sql_query = "SELECT  sum(importe) as importe FROM ticket_renglones  JOIN tickets ON ticket_renglones.TICKET_id = tickets.id JOIN cajeros  ON cajeros.id=tickets.CAJERO_id  WHERE  cajeros.id=? and fecha_hora=?;";
+		String sql_query = "SELECT  cajeros.id,tickets.fecha_hora,sum(ticket_renglones.importe) as importe FROM ticket_renglones"
+				+ "  JOIN tickets ON ticket_renglones.TICKET_id = tickets.id JOIN cajeros  ON cajeros.id=tickets.CAJERO_id "
+				+ " WHERE  cajeros.id=? and fecha_hora=?;";
 		return oxxo_db.query(sql_query, new RowMapper<Ticket_renglones_importe>() {
 			public Ticket_renglones_importe mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Ticket_renglones_importe ticket_renglones = new Ticket_renglones_importe();
 				ticket_renglones.setImporte(rs.getFloat("importe"));
-
+				ticket_renglones.setId(rs.getInt("id"));
+				ticket_renglones.setFecha_hora(rs.getString("fecha_hora"));
+				
 				return ticket_renglones;
 
 			

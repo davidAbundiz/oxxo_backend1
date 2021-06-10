@@ -1,6 +1,5 @@
 package mx.edu.itlapiedad.controladores;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -164,7 +163,7 @@ public class Mensaje {
 	}
 	
 	@GetMapping("/importe_cajero/{id}/fecha")
-	public ResponseEntity<?> buscar_importe_cajero_fecha(@PathVariable int id, @RequestParam Timestamp fecha_hora) {
+	public ResponseEntity<?>buscar_importe_cajero_fecha(@PathVariable int id, @RequestParam String fecha_hora) {
 		List<Ticket_renglones_importe> resultado;
 		try {
 			resultado = repoTick.buscar_importe_cajero_fecha(id,fecha_hora);

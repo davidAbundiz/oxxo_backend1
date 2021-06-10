@@ -13,4 +13,5 @@ public interface TicketDAO {
 	public Tickets buscar (int id);
 	public void eliminar(int id);
 	public void actualizar(Tickets tickets);
+	
 }

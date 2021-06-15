@@ -24,4 +24,4 @@ jobs:
       uses: actions/upload-artifact@v2.2.3
       with:
         name: backend1
-        path: oxxo_backend1\target\oxxo_backend1-0.0.1.jar
+        path: C:\Users\famsa\Documents\workspace-spring-tool-suite-4-4.5.1.RELEASE\oxxo_backend1\target\oxxo_backend1-0.0.1.jar
